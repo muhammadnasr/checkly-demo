@@ -5,7 +5,7 @@ This example project shows how you can use the Checkly CLI in a monitoring as co
 1. Write API Checks and Playwright-powered Browser Checks!
 2. Test -> Deploy: now you have your app monitored around the clock. All from your code base.
 3. You can have all your tests under one folder and if a new one is added it will be picked up automatically next time you test/deploy to Checkly.
-4. Have email alerts sent to you whenever a test fail or recover (email address is recommended to be stored at environment variables).
+4. Have email alerts sent to you whenever a test fails or recovers (email address is recommended to be stored at environment variables).
 5. Integrate with github actions (on push) to deploy/run all Checkly tests.
 
 
@@ -22,7 +22,7 @@ This project has the basic boilerplate files needed to get you started.
 └── package.json
 ```
 
-## How to try:
+## How to try?
 
 - Clone the project
 - Install packages `npm i`
