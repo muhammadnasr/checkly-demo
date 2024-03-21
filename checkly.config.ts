@@ -1,8 +1,8 @@
 import { defineConfig } from 'checkly'
 import { EmailAlertChannel } from 'checkly/constructs'
 
-const emailChannel = new EmailAlertChannel('email-channel-1', {
-  address: 'checkly-demo@muhammad.engineer',
+const emailChannel = new EmailAlertChannel('email-channel-2', {
+  address: `${process.env.ALERT_EMAIL}`,
 })
 
 /**
@@ -20,7 +20,7 @@ const config = defineConfig({
   /* Sets default values for Checks */
   checks: {
     /* A default for how often your Check should run in minutes */
-    frequency: 10,
+    frequency: 1,
     /* Checkly data centers to run your Checks as monitors */
     locations: ['us-east-1', 'eu-west-1'],
     /* An optional array of tags to organize your Checks */
