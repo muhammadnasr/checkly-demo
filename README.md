@@ -1,10 +1,10 @@
-# Checkly Monitoring-as-code: Demo Project
+# Checkly Monitoring-as-Code: Demo Project
 
 This example project shows how you can use the Checkly CLI in a monitoring as code (MaC) workflow, with this project you can:
 
 1. Write API Checks and Playwright-powered Browser Checks!
 2. Test -> Deploy: now you have your app monitored around the clock. All from your code base.
-3. You can have all your tests in __checks__ and if a new one is added it will be picked up automatically next time you deploy to Checkly.
+3. You can have all your tests under one folder and if a new one is added it will be picked up automatically next time you test/deploy to Checkly.
 4. Have email alerts sent to you whenever a test fail or recover (email address is recommended to be stored at environment variables).
 5. Integrate with github actions (on push) to deploy/run all Checkly tests.
 
@@ -26,6 +26,8 @@ This project has the basic boilerplate files needed to get you started.
 
 - Running `ALERT_EMAIL=alerts@acme.org npx checkly deploy` will deploy your checks to Checkly, attach email alert channel, and run them on a 10m schedule in the 
 region `us-east-1` and `eu-west-1`
+
+- Pushing code will cause a github CI action to run that will run Checkly checks and deploy to Checkly is checks are successful. Note you need to add CHECKLY_API_KEY and CHECKLY_ACCOUNT_ID to your github repository secrets.
 
 [Check the docs for the full CLI reference](https://www.checklyhq.com/docs/cli/command-line-reference/).
 

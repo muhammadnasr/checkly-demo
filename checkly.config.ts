@@ -2,7 +2,7 @@ import { defineConfig } from 'checkly'
 import { EmailAlertChannel } from 'checkly/constructs'
 
 const emailChannel = new EmailAlertChannel('email-channel-1', {
-  address: `${process.env.ALERT_EMAIL}`,
+  address: process.env.ALERT_EMAIL || "alerts@acme.org",
 })
 
 /**
