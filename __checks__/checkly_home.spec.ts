@@ -6,6 +6,6 @@ import { test, expect } from '@playwright/test'
 test('checkly homepage', async ({ page }) => {
   const response = await page.goto('https://www.checklyhq.com')
   expect(response?.status()).toBeLessThan(400)
-  await expect(page).toHaveTitle(/Code, Test & Deploy4/)
+  await expect(page).toHaveTitle(/Code, Test & Deploy/)
   await page.screenshot({ path: 'homepage.jpg' })
 })
