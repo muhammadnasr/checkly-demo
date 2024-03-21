@@ -2,7 +2,6 @@
 # with providers like Vercel, Heroku and others. This workflow does the following
 #
 # - Runs after deployment event
-# - Uses the environment_url provided in the deployment event
 # - Dry run all the checks on Checkly
 # - If the dry run passes, deploy the checks.
 #
@@ -15,7 +14,6 @@ on: [push]
 env:
   CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
   CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
-  ENVIRONMENT_URL: ${{ github.event.deployment_status.environment_url }}
   CHECKLY_TEST_ENVIRONMENT: ${{ github.event.deployment_status.environment }}
 jobs:
   test-e2e:
@@ -43,7 +41,7 @@ jobs:
         run: npm ci
       - name: Run checks # run the checks passing in the ENVIRONMENT_URL and recording a test session.
         id: run-checks
-        run: npx checkly -v && npx checkly test -e ENVIRONMENT_URL=${{ env.ENVIRONMENT_URL }} --reporter=github --record
+        run: npx checkly -v && npx checkly test --reporter=github --record
       - name: Create summary # export the markdown report to the job summary.
         id: create-summary
         run: cat checkly-github-report.md > $GITHUB_STEP_SUMMARY
