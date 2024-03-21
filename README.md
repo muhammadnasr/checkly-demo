@@ -22,14 +22,19 @@ This project has the basic boilerplate files needed to get you started.
 └── package.json
 ```
 
-- Running `npx checkly test` will look for `.check.ts` files and `.spec.ts` in `__checks__` directories and execute them in a dry run.
+## How to try:
 
-- Running `ALERT_EMAIL=alerts@acme.org npx checkly deploy` will deploy your checks to Checkly, attach email alert channel, and run them on a 10m schedule in the 
-region `us-east-1` and `eu-west-1`
+- Clone the prjoject
+- Install packages `npm i`
+- Run `npx checkly test` which will look for all `.check.ts` files and `.spec.ts` in `__checks__` folder(s) and execute them in a dry run, for advanced test folder setup check [here](https://www.checklyhq.com/docs/cli/using-check-test-match/).
 
-- Pushing code will cause a github CI action to run that will run Checkly checks and deploy to Checkly is checks are successful. Note you need to add CHECKLY_API_KEY and CHECKLY_ACCOUNT_ID to your github repository secrets.
+- Run `ALERT_EMAIL=alerts@acme.org npx checkly deploy` will will deploy your checks to Checkly, attach email alert channel, and run them on a 10m schedule in the 
+region `us-east-1` and `eu-west-1`, For more details about configuring alerts using Checkly Dashboard and CLI, check [here](https://www.checklyhq.com/docs/alerting-and-retries/) and [here](https://www.checklyhq.com/docs/cli/constructs-reference/#alertchannel) respectively.
+
+- Pushing code to github will cause a github action to run that will fire Checkly tests and deploy to Checkly if tests are successful. Note you need to add CHECKLY_API_KEY and CHECKLY_ACCOUNT_ID to your github repository secrets. For more details about CI/CD integaration you can check [here](https://www.checklyhq.com/docs/cicd/).
 
 [Check the docs for the full CLI reference](https://www.checklyhq.com/docs/cli/command-line-reference/).
+[For more advanced examples, check this repository](https://github.com/checkly/checkly-cli/tree/main/examples/)
 
 ## Adding and running `@playwright/test`
 
