@@ -14,7 +14,6 @@ on: [push]
 env:
   CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
   CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
-  CHECKLY_TEST_ENVIRONMENT: ${{ github.event.deployment_status.environment }}
 jobs:
   test-e2e:
     name: Test E2E on Checkly
@@ -47,5 +46,5 @@ jobs:
         run: cat checkly-github-report.md > $GITHUB_STEP_SUMMARY
       - name: Deploy checks # if the test run was successful and we are on Production, deploy the checks
         id: deploy-checks
-        if: steps.run-checks.outcome == 'success' && github.event.deployment_status.environment == 'Production'
+        if: steps.run-checks.outcome == 'success'
         run: npx checkly deploy --force
