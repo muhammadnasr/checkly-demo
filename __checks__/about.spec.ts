@@ -6,6 +6,6 @@ import { test, expect } from '@playwright/test'
 test('webshop homepage', async ({ page }) => {
   const response = await page.goto('https://muhammad.engineer')
   expect(response?.status()).toBeLessThan(400)
-  await expect(page).toHaveTitle(/Muhammad Nasr/)
+  await expect(page).toHaveTitle(/Muhammad Nasr2/)
   await page.screenshot({ path: 'homepage.jpg' })
 })
