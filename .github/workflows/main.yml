@@ -9,8 +9,7 @@
 name: 'checkly'
 on: [push]
 
-# Set the necessary credentials and export variables we can use to instrument our test run. Use the ENVIRONMENT_URL
-# to run your checks against staging, preview or production.
+# Set the necessary credentials and export variables we can use to instrument our test run. 
 env:
   CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
   CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
@@ -38,13 +37,13 @@ jobs:
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
-      - name: Run checks # run the checks passing in the ENVIRONMENT_URL and recording a test session.
+      - name: Run checks # run the checks and recording a test session.
         id: run-checks
         run: npx checkly -v && npx checkly test --reporter=github --record
       - name: Create summary # export the markdown report to the job summary.
         id: create-summary
         run: cat checkly-github-report.md > $GITHUB_STEP_SUMMARY
-      - name: Deploy checks # if the test run was successful and we are on Production, deploy the checks
+      - name: Deploy checks # if the test run was successful deploy the checks
         id: deploy-checks
         if: steps.run-checks.outcome == 'success'
         run: npx checkly deploy --force
