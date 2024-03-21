@@ -1,14 +1,13 @@
-# Checkly Monitoring-as-code: Boilerplate Project
+# Checkly Monitoring-as-code: Demo Project
 
-This example project shows how you can use the Checkly CLI in a monitoring as code (MaC) workflow. We are using the
-https://checklyhq.com website as a monitoring target.
+This example project shows how you can use the Checkly CLI in a monitoring as code (MaC) workflow, with this project you can:
 
 1. Write API Checks and Playwright-powered Browser Checks!
 2. Test -> Deploy: now you have your app monitored around the clock. All from your code base.
+3. You can have all your tests in __checks__ and if a new one is added it will be picked up automatically next time you deploy to Checkly.
+4. Have email alerts sent to you whenever a test fail or recover (email address is recommended to be stored at environment variables).
+5. Integrate with github actions (on push) to deploy/run all Checkly tests.
 
-```
-npm create checkly -- --template boilerplate-project
-```
 
 ## Project Structure
 
@@ -18,27 +17,15 @@ This project has the basic boilerplate files needed to get you started.
 .
 ├── README.md
 ├── __checks__
-│   ├── api.check.ts
-│   └── homepage.spec.ts
+.... tests file are put here
 ├── checkly.config.ts
 └── package.json
 ```
 
 - Running `npx checkly test` will look for `.check.ts` files and `.spec.ts` in `__checks__` directories and execute them in a dry run.
 
-- Running `npx check deploy` will deploy your checks to Checkly, attach alert channels, and run them on a 10m schedule in the 
+- Running `ALERT_EMAIL=alerts@acme.org npx checkly deploy` will deploy your checks to Checkly, attach email alert channel, and run them on a 10m schedule in the 
 region `us-east-1` and `eu-west-1`
-
-## CLI Commands
-
-Run the core CLI commands with `npx checkly <command>` 
-
-| Command              | Action                                           |
-|:---------------------|:-------------------------------------------------|
-| `npx checkly test`   | Dry run all the checks in your project           |
-| `npx checkly deploy` | Deploy your checks to the Checkly cloud          |
-| `npx checkly login`  | Log in to your Checkly account                   |
-| `npx checkly --help` | Show help for each command.                      |
 
 [Check the docs for the full CLI reference](https://www.checklyhq.com/docs/cli/command-line-reference/).
 
